@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">TripsApplicationsKotlins</string>
+    <string name="label_validation_risk">Error type</string>
+</resources>

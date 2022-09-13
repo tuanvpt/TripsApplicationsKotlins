@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    tools:context=".ui.home.HomeFragment">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Name" />
+
+    <EditText
+        android:id="@+id/edtName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Name of the trip"
+        android:maxLength="100"
+        android:maxLines="1"
+        android:singleLine="true" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Destination" />
+
+    <EditText
+        android:id="@+id/edtDestination"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Destination"
+        android:maxLength="100"
+        android:maxLines="1"
+        android:singleLine="true" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date of trip" />
+
+    <EditText
+        android:id="@+id/edtDataOfTrip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:cursorVisible="false"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:hint="MM/dd/yy"
+        android:inputType="none" />
+
+    <TextView
+        android:id="@+id/tvErrorDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Error fill"
+        android:textColor="@color/color_red_700"
+        android:visibility="gone" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Require Risk Assessment" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/cbYes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:text="yes" />
+
+        <CheckBox
+            android:id="@+id/cbNo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:layout_marginRight="@dimen/_15sdp"
+            android:text="No" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvErrorCheckRisk"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Error fill"
+        android:textColor="@color/color_red_700"
+        android:visibility="gone" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Description" />
+
+
+    <EditText
+        android:id="@+id/edtDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:cursorVisible="true"
+        android:maxLength="255" />
+
+    <Button
+        android:id="@+id/btnDatabase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_20sdp"
+        android:backgroundTint="@color/black"
+        android:text="Add to Database" />
+
+</LinearLayout>
