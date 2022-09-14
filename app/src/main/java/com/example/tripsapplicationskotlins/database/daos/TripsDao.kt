@@ -1,32 +1,40 @@
 package com.example.tripsapplicationskotlins.database.daos
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.lifecycle.LiveData
+import androidx.room.*
+import androidx.room.OnConflictStrategy.REPLACE
 import com.example.tripsapplicationskotlins.database.entities.Trip
 
 
 @Dao
-interface UserDao {
+interface TripsDao {
     @Query("SELECT * FROM trips")
-    fun getAll(): List<Trip>
+    suspend fun getAll(): List<Trip>
 
-    //TODO check
-/*    @Query("SELECT * FROM user WHERE uid IN (:userIds)")
-    fun loadAllByIds(userIds: IntArray): List<Trip>*/
+    @Query("SELECT * FROM trips WHERE uid IN (:tripIds)")
+    suspend fun loadAllByIds(tripIds: IntArray): List<Trip>
 
-    //TODO check
-/*    @Query(
-        "SELECT * FROM user WHERE first_name LIKE :first AND " +
-                "last_name LIKE :last LIMIT 1"
-    )*/
-    fun findByName(first: String, last: String): Trip
+    @Query(
+        "SELECT * FROM trips WHERE name LIKE :name AND " +
+                "destination LIKE :destination AND " +
+                "date_of_trips LIKE :dataOfTrip AND " +
+                "require_assessment LIKE :requireAssessment AND " +
+                "description LIKE :description LIMIT 1"
+    )
+    suspend fun findByName(
+        name: String,
+        destination: String,
+        dataOfTrip: String,
+        requireAssessment: String,
+        description: String
+    ): Trip
 
     @Insert
-    fun insertAll(vararg users: Trip)
+    suspend fun insertAll( trips: Trip)
+
+    @Update(onConflict = REPLACE)
+    suspend fun updateAll(vararg trips: Trip)
 
     @Delete
-    fun delete(user: Trip)
-
+    suspend fun delete(user: Trip)
 }

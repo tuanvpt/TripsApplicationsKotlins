@@ -4,9 +4,10 @@ import android.view.LayoutInflater
 import androidx.lifecycle.ViewModelStoreOwner
 import com.example.comic.utils.base.BaseFragment
 import com.example.tripsapplicationskotlins.databinding.FragmentSearchBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SearchFragment : BaseFragment<FragmentSearchBinding, SearchViewModel>() {
-
 
     override fun inflateViewBinding(inflater: LayoutInflater) =
         FragmentSearchBinding.inflate(inflater)

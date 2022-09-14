@@ -6,11 +6,14 @@ import android.widget.DatePicker
 import androidx.lifecycle.ViewModelStoreOwner
 import com.example.comic.utils.base.BaseFragment
 import com.example.tripsapplicationskotlins.R
+import com.example.tripsapplicationskotlins.database.entities.Trip
 import com.example.tripsapplicationskotlins.databinding.FragmentHomeBinding
 import com.example.tripsapplicationskotlins.utils.ViewUtils
+import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
 
+@AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
     private var isAllFieldsChecked = false
@@ -19,6 +22,10 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     override fun inflateViewBinding(inflater: LayoutInflater) =
         FragmentHomeBinding.inflate(inflater)
 
+    override fun getViewModelClass(): Class<HomeViewModel> {
+        return HomeViewModel::class.java
+    }
+
     override fun setUpView() {
         viewBinding.root.setOnClickListener { _ ->
             ViewUtils.hideKeyboardFrom(
@@ -26,22 +33,21 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                 viewBinding.root
             )
             handleDataOfTrips()
-            handleSubmitButton()
             handleCheckBox()
-
+            handleSubmitButton()
         }
     }
 
     private fun handleDataOfTrips() {
         val date =
-            DatePickerDialog.OnDateSetListener { view: DatePicker?, year: Int, month: Int, day: Int ->
+            DatePickerDialog.OnDateSetListener { _: DatePicker?, year: Int, month: Int, day: Int ->
                 myCalendar[Calendar.YEAR] = year
                 myCalendar[Calendar.MONTH] = month
                 myCalendar[Calendar.DAY_OF_MONTH] = day
                 updateLabel()
             }
-        viewBinding.edtDataOfTrip.setClickable(true)
-        viewBinding.edtDataOfTrip.setOnClickListener { view ->
+        viewBinding.edtDataOfTrip.isClickable = true
+        viewBinding.edtDataOfTrip.setOnClickListener {
             DatePickerDialog(
                 requireContext(),
                 date,
@@ -65,7 +71,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         viewBinding.btnDatabase.setOnClickListener {
             isAllFieldsChecked = CheckAllFields()
             if (isAllFieldsChecked) {
-                // Save data in SQLite
+                /*Add data to SQLite*/
+                val trips = Trip(
+                    viewBinding.edtName.text.toString(),
+                    viewBinding.edtDestination.text.toString(),
+                    viewBinding.edtDataOfTrip.text.toString(),
+                    viewBinding.cbYes.text.toString(),
+                    viewBinding.edtDestination.text.toString()
+                )
+                viewModel.insert(trips)
+
+
                 showToast("Saved")
             }
         }
@@ -85,11 +101,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             return false
         }
 
-        if (viewBinding.cbYes.isChecked || viewBinding.cbNo.isChecked) {
+/*        if (!viewBinding.cbYes.isChecked) {
             ViewUtils.show(viewBinding.tvErrorCheckRisk);
             viewBinding.tvErrorCheckRisk.setText(R.string.label_validation_risk);
             return false;
-        }
+        }*/
 
         // after all validation return true.
         return true
@@ -103,9 +119,5 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
     override fun getViewModelProviderOwner(): ViewModelStoreOwner {
         return this
-    }
-
-    override fun getViewModelClass(): Class<HomeViewModel> {
-        return HomeViewModel::class.java
     }
 }

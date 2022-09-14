@@ -4,8 +4,10 @@ import android.view.LayoutInflater
 import androidx.lifecycle.ViewModelStoreOwner
 import com.example.comic.utils.base.BaseFragment
 import com.example.tripsapplicationskotlins.databinding.FragmentUpdateBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-class UpdateFragment : BaseFragment<FragmentUpdateBinding, UpdateModel>() {
+@AndroidEntryPoint
+class UpdateFragment : BaseFragment<FragmentUpdateBinding, UpdateViewModel>() {
 
     override fun inflateViewBinding(inflater: LayoutInflater) =
         FragmentUpdateBinding.inflate(inflater)
@@ -13,15 +15,11 @@ class UpdateFragment : BaseFragment<FragmentUpdateBinding, UpdateModel>() {
     override fun setUpView() {
     }
 
-    companion object {
-        fun newInstance() = UpdateFragment()
-    }
-
     override fun getViewModelProviderOwner(): ViewModelStoreOwner {
         return this
     }
 
-    override fun getViewModelClass(): Class<UpdateModel> {
-        return UpdateModel::class.java
+    override fun getViewModelClass(): Class<UpdateViewModel> {
+        return UpdateViewModel::class.java
     }
 }

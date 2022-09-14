@@ -17,7 +17,7 @@ object ViewUtils {
      * @param onClickListener response function when user clicked on view
      */
     fun setOnDelayClick(view: View, onClickListener: View.OnClickListener) {
-        view.setOnClickListener { v: View? ->
+        view.setOnClickListener {
             /*Disable click event of view*/view.isEnabled = false
 
             /*Handle click event*/onClickListener.onClick(view)

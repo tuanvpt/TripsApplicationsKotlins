@@ -1,16 +1,17 @@
 package com.example.tripsapplicationskotlins.ui.main
 
-import AllFragment
 import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelStoreOwner
 import com.example.comic.utils.base.BaseActivity
 import com.example.tripsapplicationskotlins.R
 import com.example.tripsapplicationskotlins.databinding.ActivityMainBinding
+import com.example.tripsapplicationskotlins.ui.all.AllFragment
 import com.example.tripsapplicationskotlins.ui.home.HomeFragment
 import com.example.tripsapplicationskotlins.ui.search.SearchFragment
 import com.example.tripsapplicationskotlins.ui.update.UpdateFragment
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
 
     override fun inflateViewBinding(inflater: LayoutInflater) =
@@ -21,7 +22,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
         // default status
         replaceFragment(HomeFragment())
         changeActionBar("Home")
-
         viewBinding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.iHome -> {
