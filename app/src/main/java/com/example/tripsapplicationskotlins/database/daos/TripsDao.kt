@@ -30,10 +30,10 @@ interface TripsDao {
     ): Trip
 
     @Insert
-    suspend fun insertAll( trips: Trip)
+    suspend fun insertTrips(trips: Trip)
 
     @Update(onConflict = REPLACE)
-    suspend fun updateAll(vararg trips: Trip)
+    suspend fun updateTrips(vararg trips: Trip)
 
     @Delete
     suspend fun delete(user: Trip)
