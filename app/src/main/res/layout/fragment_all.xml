@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/cardview_dark_background"
+    android:background="@color/white"
     tools:context=".ui.all.AllFragment">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -11,18 +12,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:dividerHeight="1dp"
-        tools:listitem="@layout/trips_item"
+        android:elevation="@dimen/_5sdp"
+        android:padding="10dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:itemCount="10"
+        tools:listitem="@layout/trips_item"
         tools:orientation="vertical"
-        tools:scrollbars="vertical"
-        android:padding="10dp" />
+        tools:scrollbars="vertical" />
 
     <TextView
-        android:visibility="gone"
         android:id="@+id/txtEmpty"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="Empty list test" />
+        android:text="@string/empty_list_test"
+        android:visibility="gone" />
 
 </RelativeLayout>

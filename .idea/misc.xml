@@ -13,13 +13,15 @@
         <entry key="..\:/Users/TuanVNT/AndroidStudioProjects/TripsApplicationsKotlins/app/src/main/res/drawable/ic_clear_all.xml" value="0.1765" />
         <entry key="..\:/Users/TuanVNT/AndroidStudioProjects/TripsApplicationsKotlins/app/src/main/res/drawable/ic_home.xml" value="0.1765" />
         <entry key="..\:/Users/TuanVNT/AndroidStudioProjects/TripsApplicationsKotlins/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1765" />
+        <entry key="..\:/Users/TuanVNT/AndroidStudioProjects/TripsApplicationsKotlins/app/src/main/res/drawable/rounded_rows.xml" value="0.178" />
         <entry key="..\:/Users/TuanVNT/AndroidStudioProjects/TripsApplicationsKotlins/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/TuanVNT/AndroidStudioProjects/TripsApplicationsKotlins/app/src/main/res/layout/fragment_all.xml" value="0.26262626262626265" />
-        <entry key="..\:/Users/TuanVNT/AndroidStudioProjects/TripsApplicationsKotlins/app/src/main/res/layout/fragment_home.xml" value="0.18802083333333333" />
-        <entry key="..\:/Users/TuanVNT/AndroidStudioProjects/TripsApplicationsKotlins/app/src/main/res/layout/fragment_search.xml" value="0.18802083333333333" />
-        <entry key="..\:/Users/TuanVNT/AndroidStudioProjects/TripsApplicationsKotlins/app/src/main/res/layout/fragment_update.xml" value="0.18802083333333333" />
+        <entry key="..\:/Users/TuanVNT/AndroidStudioProjects/TripsApplicationsKotlins/app/src/main/res/layout/fragment_all.xml" value="0.5" />
+        <entry key="..\:/Users/TuanVNT/AndroidStudioProjects/TripsApplicationsKotlins/app/src/main/res/layout/fragment_edit_trip.xml" value="0.43875" />
+        <entry key="..\:/Users/TuanVNT/AndroidStudioProjects/TripsApplicationsKotlins/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/Users/TuanVNT/AndroidStudioProjects/TripsApplicationsKotlins/app/src/main/res/layout/fragment_search.xml" value="0.25" />
+        <entry key="..\:/Users/TuanVNT/AndroidStudioProjects/TripsApplicationsKotlins/app/src/main/res/layout/fragment_update.xml" value="0.25" />
         <entry key="..\:/Users/TuanVNT/AndroidStudioProjects/TripsApplicationsKotlins/app/src/main/res/layout/layout_progress_dialog.xml" value="0.18802083333333333" />
-        <entry key="..\:/Users/TuanVNT/AndroidStudioProjects/TripsApplicationsKotlins/app/src/main/res/layout/trips_item.xml" value="0.2639593908629442" />
+        <entry key="..\:/Users/TuanVNT/AndroidStudioProjects/TripsApplicationsKotlins/app/src/main/res/layout/trips_item.xml" value="0.67" />
         <entry key="..\:/Users/TuanVNT/AndroidStudioProjects/TripsApplicationsKotlins/app/src/main/res/menu/bottom_nav_menu.xml" value="0.36666666666666664" />
       </map>
     </option>

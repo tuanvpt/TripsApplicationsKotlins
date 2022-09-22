@@ -1,40 +1,43 @@
 package com.example.tripsapplicationskotlins.database.daos
 
-import androidx.lifecycle.LiveData
 import androidx.room.*
 import androidx.room.OnConflictStrategy.REPLACE
-import com.example.tripsapplicationskotlins.database.entities.Trip
+import com.example.tripsapplicationskotlins.database.entities.Trips
 
 
 @Dao
 interface TripsDao {
     @Query("SELECT * FROM trips")
-    suspend fun getAll(): List<Trip>
+    suspend fun getAll(): List<Trips>
 
     @Query("SELECT * FROM trips WHERE uid IN (:tripIds)")
-    suspend fun loadAllByIds(tripIds: IntArray): List<Trip>
+    suspend fun loadAllByIds(tripIds: IntArray): List<Trips>
 
     @Query(
         "SELECT * FROM trips WHERE name LIKE :name AND " +
                 "destination LIKE :destination AND " +
-                "date_of_trips LIKE :dataOfTrip AND " +
+                "date_of_trips LIKE :dateOfTrips AND " +
                 "require_assessment LIKE :requireAssessment AND " +
                 "description LIKE :description LIMIT 1"
     )
     suspend fun findByName(
         name: String,
         destination: String,
-        dataOfTrip: String,
+        dateOfTrips: String,
         requireAssessment: String,
         description: String
-    ): Trip
+    ): Trips
 
     @Insert
-    suspend fun insertTrips(trips: Trip)
+    suspend fun insertTrips(trips: Trips)
 
     @Update(onConflict = REPLACE)
-    suspend fun updateTrips(vararg trips: Trip)
+    suspend fun updateTrips(vararg trips: Trips)
 
     @Delete
-    suspend fun delete(user: Trip)
+    suspend fun delete(user: Trips)
+
+    @Query("SELECT * FROM trips WHERE name LIKE '%' || :search || '%'")
+    fun getSearchedTrips(search: String?): List<Trips>
+
 }

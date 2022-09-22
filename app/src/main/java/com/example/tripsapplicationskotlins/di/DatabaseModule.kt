@@ -26,7 +26,7 @@ internal class DatabaseModule {
         Room.databaseBuilder(
             context,
             TripDatabase::class.java,
-            "trips_database"
+            "Trips_database"
         ).build()
 
 

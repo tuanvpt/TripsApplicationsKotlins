@@ -3,7 +3,7 @@ package com.example.tripsapplicationskotlins.ui.home
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.comic.utils.base.BaseViewModel
-import com.example.tripsapplicationskotlins.database.entities.Trip
+import com.example.tripsapplicationskotlins.database.entities.Trips
 import com.example.tripsapplicationskotlins.database.repositories.TripRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -19,7 +19,7 @@ class HomeViewModel @Inject constructor(val repository: TripRepository) : BaseVi
         class OnFailure(val error: Throwable) : InsertTripObs()
     }
 
-    fun insert(trips: Trip) {
+    fun insert(trips: Trips) {
         viewModelScope.launch {
             kotlin.runCatching {
                 repository.insert(trips)
@@ -31,10 +31,4 @@ class HomeViewModel @Inject constructor(val repository: TripRepository) : BaseVi
         }
     }
 
-    /*  fun delete(trips: Trip) = viewModelScope.launch {
-          repository.delete(trips)
-      }
-
-      fun getAllItems() = repository.getAllItems()
-  */
 }

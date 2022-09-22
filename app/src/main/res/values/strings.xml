@@ -1,4 +1,21 @@
 <resources>
     <string name="app_name">TripsApplicationsKotlins</string>
     <string name="label_validation_risk">Error type</string>
+    <string name="empty_list_test">Empty list test</string>
+    <string name="error_fill">Error fill</string>
+    <string name="require_risk_assessment">Require Risk Assessment</string>
+    <string name="label_description">Description</string>
+    <string name="button_add_to_database">Add to Database</string>
+    <string name="label_name">Name</string>
+    <string name="name_of_the_trip">Name of the trip</string>
+    <string name="label_destination">Destination</string>
+    <string name="label_date_of_trip">Date of trip</string>
+    <string name="mm_dd_yy">MM/dd/yy</string>
+    <string name="check_box_yes">yes</string>
+    <string name="check_box_no">No</string>
+    <string name="item_name">item name</string>
+    <string name="item_destination">item destination</string>
+    <string name="mm_dd_yyyyy">MM/dd/yyyyy</string>
+    <string name="search_some_thing">Search some thing ...</string>
+    <string name="button_edit">Edit</string>
 </resources>

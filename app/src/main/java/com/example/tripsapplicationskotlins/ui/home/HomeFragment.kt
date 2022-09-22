@@ -1,13 +1,13 @@
 package com.example.tripsapplicationskotlins.ui.home
 
 import android.app.DatePickerDialog
-import android.util.Log
 import android.view.LayoutInflater
 import android.widget.DatePicker
 import androidx.lifecycle.ViewModelStoreOwner
 import com.example.comic.utils.base.BaseFragment
-import com.example.tripsapplicationskotlins.database.entities.Trip
+import com.example.tripsapplicationskotlins.database.entities.Trips
 import com.example.tripsapplicationskotlins.databinding.FragmentHomeBinding
+import com.example.tripsapplicationskotlins.utils.LogUtil
 import com.example.tripsapplicationskotlins.utils.ViewUtils
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
@@ -15,8 +15,6 @@ import java.util.*
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
-
-    private val TAG = "NOTE_VIEW_MODEL"
 
     private var isAllFieldsChecked = false
     private val myCalendar = Calendar.getInstance()
@@ -34,26 +32,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                 requireContext(),
                 viewBinding.root
             )
-
-            Log.d(TAG, "MainActivity: ${viewModel.insertTripObs} , $viewModel")
-
+            LogUtil.e("MainActivity: ${viewModel.insertTripObs} , $viewModel")
             handleDataOfTrips()
             handleCheckBox()
             handleSubmitButton()
         }
     }
-
-    /* private fun initControls() {
-         val adapter = NoteAdapter(this@HomeFragment, onItemClick, onItemDelete)
-
-         binding.rvNote.setHasFixedSize(true)
-         binding.rvNote.layoutManager = LinearLayoutManager(this)
-         binding.rvNote.adapter = adapter
-
-         noteViewModel.getAllNote().observe(this, {
-             adapter.setNotes(it)
-         })
-     }*/
 
     private fun handleDataOfTrips() {
         val date =
@@ -89,7 +73,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             isAllFieldsChecked = CheckAllFields()
             if (isAllFieldsChecked) {
                 /*Add data to SQLite*/
-                val trips = Trip(
+                val trips = Trips(
+                    0,
                     viewBinding.edtName.text.toString(),
                     viewBinding.edtDestination.text.toString(),
                     viewBinding.edtDataOfTrip.text.toString(),
@@ -117,14 +102,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             viewBinding.edtDataOfTrip.error = "This field is required"
             return false
         }
-
-/*        if (!viewBinding.cbYes.isChecked) {
-            ViewUtils.show(viewBinding.tvErrorCheckRisk);
-            viewBinding.tvErrorCheckRisk.setText(R.string.label_validation_risk);
-            return false;
-        }*/
-
-        // after all validation return true.
         return true
     }
 
