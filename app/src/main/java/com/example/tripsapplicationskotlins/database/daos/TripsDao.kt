@@ -37,7 +37,7 @@ interface TripsDao {
     @Delete
     suspend fun delete(user: Trips)
 
-    @Query("SELECT * FROM trips WHERE name LIKE '%' || :search || '%'")
-    fun getSearchedTrips(search: String?): List<Trips>
+    @Query("SELECT * FROM trips WHERE name LIKE '%' || :name || '%'")
+    fun getSearchedTrips(name: String): List<Trips>
 
 }

@@ -10,7 +10,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class HomeViewModel @Inject constructor(val repository: TripRepository) : BaseViewModel() {
+class HomeViewModel @Inject constructor(private val repository: TripRepository) : BaseViewModel() {
 
     val insertTripObs: MutableLiveData<InsertTripObs> = MutableLiveData()
 

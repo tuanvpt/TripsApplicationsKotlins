@@ -21,9 +21,11 @@ class AllFragment : BaseFragment<FragmentAllBinding, AllViewModel>() {
 
     override fun setUpView() {
         viewModel.getAllTrip()
-        viewBinding.rvListTrips.setHasFixedSize(true)
-        viewBinding.rvListTrips.layoutManager = LinearLayoutManager(requireContext())
-        viewBinding.rvListTrips.adapter = adapter
+        viewBinding.rvListTrips.apply {
+            setHasFixedSize(true)
+            layoutManager = LinearLayoutManager(requireContext())
+            adapter = adapter
+        }
     }
 
     private fun onClick(trips: Trips) {

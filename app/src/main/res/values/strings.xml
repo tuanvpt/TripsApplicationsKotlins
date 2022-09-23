@@ -18,4 +18,7 @@
     <string name="mm_dd_yyyyy">MM/dd/yyyyy</string>
     <string name="search_some_thing">Search some thing ...</string>
     <string name="button_edit">Edit</string>
+    <string name="label_required_fill_info">This field is required</string>
+    <string name="label_format_month_day_year">MM/dd/yy</string>
+    <string name="button_save_edit">Save edit</string>
 </resources>

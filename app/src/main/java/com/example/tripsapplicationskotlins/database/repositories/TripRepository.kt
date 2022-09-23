@@ -11,4 +11,6 @@ class TripRepository @Inject constructor(private val tripsDao: TripsDao) {
     suspend fun delete(trips: Trips) = tripsDao.delete(trips)
 
     suspend fun getAllItems(): List<Trips> = tripsDao.getAll()
+
+    fun searchNameTrips(name:String) : List<Trips> = tripsDao.getSearchedTrips(name)
 }

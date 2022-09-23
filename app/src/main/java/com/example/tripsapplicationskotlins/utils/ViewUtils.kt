@@ -18,21 +18,15 @@ object ViewUtils {
      */
     fun setOnDelayClick(view: View, onClickListener: View.OnClickListener) {
         view.setOnClickListener {
-            /*Disable click event of view*/view.isEnabled = false
+            /*Disable click event of view*/
+            view.isEnabled = false
 
-            /*Handle click event*/onClickListener.onClick(view)
+            /*Handle click event*/
+            onClickListener.onClick(view)
 
-            /*Open view click */view.postDelayed({ view.isEnabled = true }, 500)
+            /*Open view click */
+            view.postDelayed({ view.isEnabled = true }, 500)
         }
-    }
-
-    /**
-     * Change visibility of view to Visible
-     *
-     * @param view view need to change visibility
-     */
-    fun show(view: View) {
-        view.visibility = View.VISIBLE
     }
 
     /**
@@ -49,14 +43,6 @@ object ViewUtils {
         }
     }
 
-    /**
-     * Change visibility of view to Visible
-     *
-     * @param view view need to change visibility
-     */
-    fun hide(view: View) {
-        view.visibility = View.GONE
-    }
 
     /**
      * Show dialog

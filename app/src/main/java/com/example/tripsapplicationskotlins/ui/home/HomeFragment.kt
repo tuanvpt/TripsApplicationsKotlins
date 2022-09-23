@@ -5,10 +5,12 @@ import android.view.LayoutInflater
 import android.widget.DatePicker
 import androidx.lifecycle.ViewModelStoreOwner
 import com.example.comic.utils.base.BaseFragment
+import com.example.tripsapplicationskotlins.R
 import com.example.tripsapplicationskotlins.database.entities.Trips
 import com.example.tripsapplicationskotlins.databinding.FragmentHomeBinding
 import com.example.tripsapplicationskotlins.utils.LogUtil
 import com.example.tripsapplicationskotlins.utils.ViewUtils
+import com.example.tripsapplicationskotlins.utils.exts.onClickListener
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
@@ -27,7 +29,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     }
 
     override fun setUpView() {
-        viewBinding.root.setOnClickListener { _ ->
+        viewBinding.root.onClickListener {
             ViewUtils.hideKeyboardFrom(
                 requireContext(),
                 viewBinding.root
@@ -47,66 +49,73 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                 myCalendar[Calendar.DAY_OF_MONTH] = day
                 updateLabel()
             }
-        viewBinding.edtDataOfTrip.isClickable = true
-        viewBinding.edtDataOfTrip.setOnClickListener {
-            DatePickerDialog(
-                requireContext(),
-                date,
-                myCalendar[Calendar.YEAR],
-                myCalendar[Calendar.MONTH],
-                myCalendar[Calendar.DAY_OF_MONTH]
-            ).show()
-        }
-    }
-
-    private fun handleCheckBox() {
-        viewBinding.cbYes.setOnCheckedChangeListener { _, _ ->
-            viewBinding.cbNo.isChecked = false
-        }
-        viewBinding.cbNo.setOnCheckedChangeListener { _, _ ->
-            viewBinding.cbYes.isChecked = false
-        }
-    }
-
-    private fun handleSubmitButton() {
-        viewBinding.btnDatabase.setOnClickListener {
-            isAllFieldsChecked = CheckAllFields()
-            if (isAllFieldsChecked) {
-                /*Add data to SQLite*/
-                val trips = Trips(
-                    0,
-                    viewBinding.edtName.text.toString(),
-                    viewBinding.edtDestination.text.toString(),
-                    viewBinding.edtDataOfTrip.text.toString(),
-                    viewBinding.cbYes.text.toString(),
-                    viewBinding.edtDestination.text.toString()
-                )
-                viewModel.insert(trips)
-
-
-                showToast("Saved")
+        viewBinding.edtDataOfTrip.apply {
+            isClickable = true
+            onClickListener() {
+                DatePickerDialog(
+                    requireContext(),
+                    date,
+                    myCalendar[Calendar.YEAR],
+                    myCalendar[Calendar.MONTH],
+                    myCalendar[Calendar.DAY_OF_MONTH]
+                ).show()
             }
         }
     }
 
-    private fun CheckAllFields(): Boolean {
-        if (viewBinding.edtName.length() == 0) {
-            viewBinding.edtName.error = "This field is required"
-            return false
+    private fun handleCheckBox() {
+        with(viewBinding) {
+            cbYes.setOnCheckedChangeListener { _, _ ->
+                viewBinding.cbNo.isChecked = false
+            }
+            cbNo.setOnCheckedChangeListener { _, _ ->
+                viewBinding.cbYes.isChecked = false
+            }
         }
-        if (viewBinding.edtDestination.length() == 0) {
-            viewBinding.edtDestination.error = "This field is required"
-            return false
+    }
+
+    private fun handleSubmitButton() {
+        with(viewBinding) {
+            btnDatabase.setOnClickListener {
+                isAllFieldsChecked = isCheckAllFields()
+                if (isAllFieldsChecked) {
+                    /*Add data to SQLite*/
+                    val trips = Trips(
+                        0,
+                        edtName.text.toString(),
+                        edtDestination.text.toString(),
+                        edtDataOfTrip.text.toString(),
+                        cbYes.text.toString(),
+                        edtDestination.text.toString()
+                    )
+                    viewModel.insert(trips)
+
+                    showToast("Saved")
+                }
+            }
         }
-        if (viewBinding.edtDataOfTrip.length() == 0) {
-            viewBinding.edtDataOfTrip.error = "This field is required"
-            return false
+    }
+
+    private fun isCheckAllFields(): Boolean {
+        with(viewBinding) {
+            if (edtName.length() == 0) {
+                edtName.error = getString(R.string.label_required_fill_info)
+                return false
+            }
+            if (edtDestination.length() == 0) {
+                edtDestination.error = getString(R.string.label_required_fill_info)
+                return false
+            }
+            if (edtDataOfTrip.length() == 0) {
+                edtDataOfTrip.error = getString(R.string.label_required_fill_info)
+                return false
+            }
+            return true
         }
-        return true
     }
 
     private fun updateLabel() {
-        val myFormat = "MM/dd/yy"
+        val myFormat = getString(R.string.label_format_month_day_year)
         val dateFormat = SimpleDateFormat(myFormat, Locale.US)
         viewBinding.edtDataOfTrip.setText(dateFormat.format(myCalendar.time))
     }

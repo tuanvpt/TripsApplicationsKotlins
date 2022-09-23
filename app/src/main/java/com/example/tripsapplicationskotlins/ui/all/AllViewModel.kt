@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 
 @HiltViewModel
-class AllViewModel @Inject constructor(val repository: TripRepository) : BaseViewModel() {
+class AllViewModel @Inject constructor(private val repository: TripRepository) : BaseViewModel() {
 
     val getTripObs: MutableLiveData<GetTripObs> = MutableLiveData()
 
