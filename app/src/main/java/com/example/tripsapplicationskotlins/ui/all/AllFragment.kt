@@ -19,6 +19,9 @@ class AllFragment : BaseFragment<FragmentAllBinding, AllViewModel>() {
 
     private val adapterTrips = TripsAdapter(::onClick, ::onEdit, ::onDelete)
 
+    //TODO read lazy
+    private val dialog by lazy { EditDialog() }
+
     override fun inflateViewBinding(inflater: LayoutInflater) =
         FragmentAllBinding.inflate(inflater)
 
@@ -37,6 +40,10 @@ class AllFragment : BaseFragment<FragmentAllBinding, AllViewModel>() {
 
     private fun onEdit(trips: Trips) {
         showToast("edit")
+/*
+        dialog.show(childFragmentManager, "TEST")
+*/
+        dialog.showText(childFragmentManager, trips)
     }
 
     private fun onDelete(trips: Trips) {
@@ -67,8 +74,6 @@ class AllFragment : BaseFragment<FragmentAllBinding, AllViewModel>() {
                 }
             }
         }
-
-
     }
 
     override fun getViewModelProviderOwner(): ViewModelStoreOwner {

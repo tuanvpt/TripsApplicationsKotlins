@@ -21,4 +21,6 @@
     <string name="label_required_fill_info">This field is required</string>
     <string name="label_format_month_day_year">MM/dd/yy</string>
     <string name="button_save_edit">Save edit</string>
+    <string name="banner_ad_unit_id">ca-app-pub-8126408194571445/5839822608</string>
+
 </resources>

@@ -4,14 +4,20 @@ import android.app.DatePickerDialog
 import android.view.LayoutInflater
 import android.widget.DatePicker
 import androidx.lifecycle.ViewModelStoreOwner
-import com.example.tripsapplicationskotlins.base.BaseFragment
 import com.example.tripsapplicationskotlins.R
+import com.example.tripsapplicationskotlins.base.BaseFragment
 import com.example.tripsapplicationskotlins.database.entities.Trips
 import com.example.tripsapplicationskotlins.databinding.FragmentHomeBinding
+import com.example.tripsapplicationskotlins.utils.LogUtil
 import com.example.tripsapplicationskotlins.utils.exts.onClickListenerDelay
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.LoadAdError
+import com.google.android.gms.ads.MobileAds
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
+
 
 @AndroidEntryPoint
 class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
@@ -30,6 +36,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         handleCheckBox()
         handleDataOfTrips()
         handleSubmitButton()
+        loadAdBanner()
     }
 
     private fun handleDataOfTrips() {
@@ -64,23 +71,23 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     }
 
     private fun handleSubmitButton() {
-            viewBinding.btnDatabase.setOnClickListener {
-                isAllFieldsChecked = isCheckAllFields()
-                if (isAllFieldsChecked) {
-                    /*Add data to SQLite*/
-                    val trips = Trips(
-                        0,
-                        viewBinding.edtName.text.toString(),
-                        viewBinding.edtDestination.text.toString(),
-                        viewBinding.edtDateOfTrip.text.toString(),
-                        viewBinding.cbYes.text.toString(),
-                        viewBinding.edtDestination.text.toString()
-                    )
-                    viewModel.insert(trips)
+        viewBinding.btnDatabase.setOnClickListener {
+            isAllFieldsChecked = isCheckAllFields()
+            if (isAllFieldsChecked) {
+                /*Add data to SQLite*/
+                val trips = Trips(
+                    0,
+                    viewBinding.edtName.text.toString(),
+                    viewBinding.edtDestination.text.toString(),
+                    viewBinding.edtDateOfTrip.text.toString(),
+                    viewBinding.cbYes.text.toString(),
+                    viewBinding.edtDestination.text.toString()
+                )
+                viewModel.insert(trips)
 
-                    showToast("Saved")
-                }
+                showToast("Saved")
             }
+        }
     }
 
     private fun isCheckAllFields(): Boolean {
@@ -109,5 +116,27 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
     override fun getViewModelProviderOwner(): ViewModelStoreOwner {
         return this
+    }
+
+    /** AdMob demo */
+    private fun loadAdBanner() {
+        MobileAds.initialize(requireContext()) {}
+
+        val adRequest = AdRequest.Builder().build()
+        viewBinding.adView.loadAd(adRequest)
+
+        viewBinding.adView.adListener = object : AdListener() {
+
+            override fun onAdLoaded() {
+                showToast("Ad Loaded")
+                LogUtil.e("Ad Loaded")
+            }
+
+            override fun onAdFailedToLoad(adError: LoadAdError) {
+                LogUtil.e(adError.toString())
+            }
+
+        }
+
     }
 }

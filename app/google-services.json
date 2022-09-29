@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "922245241215",
+    "project_id": "tripskotlin",
+    "storage_bucket": "tripskotlin.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:922245241215:android:310c395215df3e2d1c624a",
+        "android_client_info": {
+          "package_name": "com.example.tripsapplicationskotlins"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "922245241215-ig247f1i9rg5b1t4cdos3n2hgvi04lus.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCd2R_9svmEmqM3Tn8K_xn1kA_XP2fxsjo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "922245241215-ig247f1i9rg5b1t4cdos3n2hgvi04lus.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
