@@ -1,4 +1,4 @@
-package com.example.comic.utils.base
+package com.example.tripsapplicationskotlins.base
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

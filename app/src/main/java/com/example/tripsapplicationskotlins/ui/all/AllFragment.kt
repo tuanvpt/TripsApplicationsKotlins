@@ -5,7 +5,7 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.comic.utils.base.BaseFragment
+import com.example.tripsapplicationskotlins.base.BaseFragment
 import com.example.tripsapplicationskotlins.database.entities.Trips
 import com.example.tripsapplicationskotlins.databinding.FragmentAllBinding
 import com.example.tripsapplicationskotlins.ui.all.AllViewModel.DeleteTripObs

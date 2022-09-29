@@ -4,7 +4,7 @@ import android.app.DatePickerDialog
 import android.view.LayoutInflater
 import android.widget.DatePicker
 import androidx.lifecycle.ViewModelStoreOwner
-import com.example.comic.utils.base.BaseFragment
+import com.example.tripsapplicationskotlins.base.BaseFragment
 import com.example.tripsapplicationskotlins.R
 import com.example.tripsapplicationskotlins.database.entities.Trips
 import com.example.tripsapplicationskotlins.databinding.FragmentHomeBinding

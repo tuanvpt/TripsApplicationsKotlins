@@ -11,25 +11,6 @@ import android.view.inputmethod.InputMethodManager
  */
 object ViewUtils {
     /**
-     * Set click with delay of view
-     *
-     * @param view            view need to handle click
-     * @param onClickListener response function when user clicked on view
-     */
-    fun setOnDelayClick(view: View, onClickListener: View.OnClickListener) {
-        view.setOnClickListener {
-            /*Disable click event of view*/
-            view.isEnabled = false
-
-            /*Handle click event*/
-            onClickListener.onClick(view)
-
-            /*Open view click */
-            view.postDelayed({ view.isEnabled = true }, 500)
-        }
-    }
-
-    /**
      * Change visibility of view to Visible
      *
      * @param view   view need to change visibility

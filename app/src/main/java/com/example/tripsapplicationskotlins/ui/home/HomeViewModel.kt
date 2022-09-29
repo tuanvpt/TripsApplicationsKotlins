@@ -2,7 +2,7 @@ package com.example.tripsapplicationskotlins.ui.home
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.example.comic.utils.base.BaseViewModel
+import com.example.tripsapplicationskotlins.base.BaseViewModel
 import com.example.tripsapplicationskotlins.database.entities.Trips
 import com.example.tripsapplicationskotlins.database.repositories.TripRepository
 import dagger.hilt.android.lifecycle.HiltViewModel

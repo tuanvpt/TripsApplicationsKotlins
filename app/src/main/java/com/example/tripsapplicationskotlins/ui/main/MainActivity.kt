@@ -1,10 +1,8 @@
 package com.example.tripsapplicationskotlins.ui.main
 
-import android.opengl.EGL14.*
-import android.opengl.EGLExt.EGL_OPENGL_ES3_BIT_KHR
 import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
-import com.example.comic.utils.base.BaseActivity
+import com.example.tripsapplicationskotlins.base.BaseActivity
 import com.example.tripsapplicationskotlins.R
 import com.example.tripsapplicationskotlins.databinding.ActivityMainBinding
 import com.example.tripsapplicationskotlins.ui.all.AllFragment

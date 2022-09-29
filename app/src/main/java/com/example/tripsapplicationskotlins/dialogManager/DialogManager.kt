@@ -1,4 +1,4 @@
-package com.example.comic.dialogManager
+package com.example.tripsapplicationskotlins.dialogManager
 
 interface DialogManager {
 

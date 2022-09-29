@@ -1,11 +1,8 @@
 package com.example.tripsapplicationskotlins.di
 
-import android.app.Application
 import android.content.Context
 import androidx.room.Room
-import androidx.room.RoomDatabase
 import com.example.tripsapplicationskotlins.database.TripDatabase
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

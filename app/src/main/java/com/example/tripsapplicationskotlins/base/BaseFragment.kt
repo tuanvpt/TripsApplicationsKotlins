@@ -1,4 +1,4 @@
-package com.example.comic.utils.base
+package com.example.tripsapplicationskotlins.base
 
 import android.content.Context
 import android.os.Bundle
@@ -10,8 +10,8 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.viewbinding.ViewBinding
-import com.example.comic.dialogManager.DialogManager
-import com.example.comic.dialogManager.DialogManagerImpl
+import com.example.tripsapplicationskotlins.dialogManager.DialogManager
+import com.example.tripsapplicationskotlins.dialogManager.DialogManagerImpl
 
 abstract class BaseFragment<V : ViewBinding, VM : BaseViewModel> : Fragment() {
 

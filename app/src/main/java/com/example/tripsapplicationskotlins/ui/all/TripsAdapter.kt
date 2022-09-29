@@ -24,11 +24,11 @@ class TripsAdapter(
             txtDestination.text = item.destination
             txtDateOfTime.text = item.dateOfTrip
             txtUid.text = item.id.toString()
-        }
 
-        binding.btnView.onClickListenerDelay { onClick.invoke(item) }
-        binding.btnEdit.onClickListenerDelay { onEdit.invoke(item) }
-        binding.btnDelete.onClickListenerDelay { onDelete.invoke(item) }
+            btnView.onClickListenerDelay { onClick.invoke(item) }
+            btnEdit.onClickListenerDelay { onEdit.invoke(item) }
+            btnDelete.onClickListenerDelay { onDelete.invoke(item) }
+        }
     }
 
 }

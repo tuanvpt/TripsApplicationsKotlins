@@ -1,4 +1,4 @@
-package com.example.comic.utils.base
+package com.example.tripsapplicationskotlins.base
 
 import com.example.comic.utils.scheduler.DataResult
 import kotlinx.coroutines.CoroutineScope

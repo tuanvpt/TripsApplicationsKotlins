@@ -1,4 +1,4 @@
-package com.example.comic.utils.base
+package com.example.tripsapplicationskotlins.base
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,8 +6,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewbinding.ViewBinding
-import com.example.comic.dialogManager.DialogManager
-import com.example.comic.dialogManager.DialogManagerImpl
+import com.example.tripsapplicationskotlins.dialogManager.DialogManager
+import com.example.tripsapplicationskotlins.dialogManager.DialogManagerImpl
 
 abstract class BaseActivity<V : ViewBinding, VM : BaseViewModel> :
     AppCompatActivity() {

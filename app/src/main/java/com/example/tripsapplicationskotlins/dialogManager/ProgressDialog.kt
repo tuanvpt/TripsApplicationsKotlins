@@ -1,4 +1,4 @@
-package com.example.comic.dialogManager
+package com.example.tripsapplicationskotlins.dialogManager
 
 import android.app.Dialog
 import android.content.Context

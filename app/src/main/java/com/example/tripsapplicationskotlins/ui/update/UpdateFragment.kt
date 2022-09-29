@@ -2,7 +2,7 @@ package com.example.tripsapplicationskotlins.ui.update
 
 import android.view.LayoutInflater
 import androidx.lifecycle.ViewModelStoreOwner
-import com.example.comic.utils.base.BaseFragment
+import com.example.tripsapplicationskotlins.base.BaseFragment
 import com.example.tripsapplicationskotlins.databinding.FragmentUpdateBinding
 import dagger.hilt.android.AndroidEntryPoint
 

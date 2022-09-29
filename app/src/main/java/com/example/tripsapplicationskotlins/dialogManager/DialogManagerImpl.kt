@@ -1,4 +1,4 @@
-package com.example.comic.dialogManager
+package com.example.tripsapplicationskotlins.dialogManager
 
 import android.content.Context
 import java.lang.ref.WeakReference
