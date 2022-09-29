@@ -8,9 +8,7 @@ import com.example.comic.utils.base.BaseFragment
 import com.example.tripsapplicationskotlins.R
 import com.example.tripsapplicationskotlins.database.entities.Trips
 import com.example.tripsapplicationskotlins.databinding.FragmentHomeBinding
-import com.example.tripsapplicationskotlins.utils.LogUtil
-import com.example.tripsapplicationskotlins.utils.ViewUtils
-import com.example.tripsapplicationskotlins.utils.exts.onClickListener
+import com.example.tripsapplicationskotlins.utils.exts.onClickListenerDelay
 import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.*
@@ -29,16 +27,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     }
 
     override fun setUpView() {
-        viewBinding.root.onClickListener {
-            ViewUtils.hideKeyboardFrom(
-                requireContext(),
-                viewBinding.root
-            )
-            LogUtil.e("MainActivity: ${viewModel.insertTripObs} , $viewModel")
-            handleDataOfTrips()
-            handleCheckBox()
-            handleSubmitButton()
-        }
+        handleCheckBox()
+        handleDataOfTrips()
+        handleSubmitButton()
     }
 
     private fun handleDataOfTrips() {
@@ -49,17 +40,15 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                 myCalendar[Calendar.DAY_OF_MONTH] = day
                 updateLabel()
             }
-        viewBinding.edtDataOfTrip.apply {
-            isClickable = true
-            onClickListener() {
-                DatePickerDialog(
-                    requireContext(),
-                    date,
-                    myCalendar[Calendar.YEAR],
-                    myCalendar[Calendar.MONTH],
-                    myCalendar[Calendar.DAY_OF_MONTH]
-                ).show()
-            }
+        viewBinding.edtDateOfTrip.isClickable = true
+        viewBinding.edtDateOfTrip.onClickListenerDelay() {
+            DatePickerDialog(
+                requireContext(),
+                date,
+                myCalendar[Calendar.YEAR],
+                myCalendar[Calendar.MONTH],
+                myCalendar[Calendar.DAY_OF_MONTH]
+            ).show()
         }
     }
 
@@ -75,25 +64,23 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     }
 
     private fun handleSubmitButton() {
-        with(viewBinding) {
-            btnDatabase.setOnClickListener {
+            viewBinding.btnDatabase.setOnClickListener {
                 isAllFieldsChecked = isCheckAllFields()
                 if (isAllFieldsChecked) {
                     /*Add data to SQLite*/
                     val trips = Trips(
                         0,
-                        edtName.text.toString(),
-                        edtDestination.text.toString(),
-                        edtDataOfTrip.text.toString(),
-                        cbYes.text.toString(),
-                        edtDestination.text.toString()
+                        viewBinding.edtName.text.toString(),
+                        viewBinding.edtDestination.text.toString(),
+                        viewBinding.edtDateOfTrip.text.toString(),
+                        viewBinding.cbYes.text.toString(),
+                        viewBinding.edtDestination.text.toString()
                     )
                     viewModel.insert(trips)
 
                     showToast("Saved")
                 }
             }
-        }
     }
 
     private fun isCheckAllFields(): Boolean {
@@ -106,8 +93,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
                 edtDestination.error = getString(R.string.label_required_fill_info)
                 return false
             }
-            if (edtDataOfTrip.length() == 0) {
-                edtDataOfTrip.error = getString(R.string.label_required_fill_info)
+            if (edtDateOfTrip.length() == 0) {
+                edtDateOfTrip.error = getString(R.string.label_required_fill_info)
                 return false
             }
             return true
@@ -117,7 +104,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     private fun updateLabel() {
         val myFormat = getString(R.string.label_format_month_day_year)
         val dateFormat = SimpleDateFormat(myFormat, Locale.US)
-        viewBinding.edtDataOfTrip.setText(dateFormat.format(myCalendar.time))
+        viewBinding.edtDateOfTrip.setText(dateFormat.format(myCalendar.time))
     }
 
     override fun getViewModelProviderOwner(): ViewModelStoreOwner {

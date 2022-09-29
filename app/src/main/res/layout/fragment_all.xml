@@ -8,11 +8,12 @@
     tools:context=".ui.all.AllFragment">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvListTrips"
+        android:id="@+id/rvListAllTrips"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:dividerHeight="1dp"
         android:elevation="@dimen/_5sdp"
+        android:nestedScrollingEnabled="false"
         android:padding="10dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         tools:itemCount="10"

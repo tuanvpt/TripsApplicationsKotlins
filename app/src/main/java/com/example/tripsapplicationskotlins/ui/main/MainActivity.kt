@@ -1,5 +1,7 @@
 package com.example.tripsapplicationskotlins.ui.main
 
+import android.opengl.EGL14.*
+import android.opengl.EGLExt.EGL_OPENGL_ES3_BIT_KHR
 import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
 import com.example.comic.utils.base.BaseActivity
@@ -27,22 +29,18 @@ class MainActivity : BaseActivity<ActivityMainBinding, MainViewModel>() {
                 R.id.iHome -> {
                     replaceFragment(HomeFragment())
                     changeActionBar("Home")
-                    showToast("Home")
                 }
                 R.id.iAll -> {
                     replaceFragment(AllFragment())
                     changeActionBar("All")
-                    showToast("All")
                 }
                 R.id.iSearch -> {
                     replaceFragment(SearchFragment())
                     changeActionBar("Search")
-                    showToast("Search")
                 }
                 R.id.iUpdate -> {
                     replaceFragment(UpdateFragment())
                     changeActionBar("Update")
-                    showToast("Update")
                 }
             }
             true

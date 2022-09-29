@@ -6,6 +6,7 @@ import com.example.comic.utils.base.BaseViewModel
 import com.example.tripsapplicationskotlins.database.entities.Trips
 import com.example.tripsapplicationskotlins.database.repositories.TripRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -14,10 +15,11 @@ import javax.inject.Inject
 class AllViewModel @Inject constructor(private val repository: TripRepository) : BaseViewModel() {
 
     val getTripObs: MutableLiveData<GetTripObs> = MutableLiveData()
+    val getDeleteObs: MutableLiveData<DeleteTripObs> = MutableLiveData()
 
     sealed class DeleteTripObs {
-        class OnSuccess : DeleteTripObs()
-        class OnFailure : DeleteTripObs()
+        class OnSuccessDelete(val items: Trips) : DeleteTripObs()
+        class OnFailureDelete : DeleteTripObs()
     }
 
     sealed class GetTripObs {
@@ -25,18 +27,20 @@ class AllViewModel @Inject constructor(private val repository: TripRepository) :
         class OnFailure() : GetTripObs()
     }
 
-    fun deleteTrip(trips: Trips) = viewModelScope.launch {
-        viewModelScope.launch {
+    fun deleteTrip(trips: Trips) {
+        viewModelScope.launch(Dispatchers.IO) {
             kotlin.runCatching {
-                repository.delete(trips)
+                repository.deleteTrips(trips)
             }.onSuccess {
+                getDeleteObs.postValue(DeleteTripObs.OnSuccessDelete(trips))
             }.onFailure {
+                getDeleteObs.postValue(DeleteTripObs.OnFailureDelete())
             }
         }
     }
 
     fun getAllTrip() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             kotlin.runCatching {
                 repository.getAllItems()
             }.onSuccess {

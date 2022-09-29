@@ -6,11 +6,12 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import com.google.android.material.snackbar.Snackbar
 
-fun View.onClickListener(onClickListener: View.OnClickListener) {
-    isEnabled = false
-    /*Handle click event*/
-    onClickListener.onClick(this)
-    postDelayed({ isEnabled = true }, 500)
+fun View.onClickListenerDelay(event: () -> Unit) {
+    this.setOnClickListener {
+        isEnabled = false
+        event.invoke()
+        postDelayed({ isEnabled = true }, 500)
+    }
 }
 
 
@@ -42,12 +43,13 @@ fun Context.toast(message: CharSequence) =
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 
 
-
 fun View.hideKeyboard(): Boolean {
     try {
-        val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        val inputMethodManager =
+            context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         return inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
-    } catch (ignored: RuntimeException) { }
+    } catch (ignored: RuntimeException) {
+    }
     return false
 }
 

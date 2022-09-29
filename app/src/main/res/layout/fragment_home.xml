@@ -47,15 +47,12 @@
         android:text="@string/label_date_of_trip" />
 
     <EditText
-        android:id="@+id/edtDataOfTrip"
+        android:id="@+id/edtDateOfTrip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:autofillHints=""
         android:cursorVisible="false"
         android:focusable="false"
-        android:hint="@string/mm_dd_yy"
-        android:inputType="none"
-        android:textIsSelectable="true" />
+        android:hint="@string/mm_dd_yy" />
 
     <TextView
         android:id="@+id/tvErrorDate"
@@ -126,6 +123,7 @@
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
 
 </LinearLayout>
