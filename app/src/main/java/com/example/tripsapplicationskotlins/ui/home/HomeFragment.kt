@@ -90,6 +90,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         }
     }
 
+    override fun registerLiveData() {
+        viewModel.insertTripObs.observe(this) {
+            when (it) {
+                is HomeViewModel.InsertTripObs.OnSuccess -> {
+
+                }
+                is HomeViewModel.InsertTripObs.OnFailure -> {
+                    LogUtil.e(it.toString())
+                }
+            }
+        }
+    }
+
     private fun isCheckAllFields(): Boolean {
         with(viewBinding) {
             if (edtName.length() == 0) {

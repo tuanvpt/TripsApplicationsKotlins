@@ -19,7 +19,9 @@
         android:hint="@string/name_of_the_trip"
         android:maxLength="100"
         android:maxLines="1"
-        android:singleLine="true" />
+        android:singleLine="true"
+        android:inputType="text"
+        android:autofillHints="" />
 
 
     <TextView
@@ -34,7 +36,9 @@
         android:hint="@string/label_destination"
         android:maxLength="100"
         android:maxLines="1"
-        android:singleLine="true" />
+        android:singleLine="true"
+        android:autofillHints=""
+        android:inputType="text" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -103,7 +107,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:cursorVisible="true"
-        android:maxLength="255" />
+        android:maxLength="255"
+        android:autofillHints="Empty"
+        android:inputType="text" />
 
     <Button
         android:id="@+id/btnEdit"

@@ -11,15 +11,14 @@ import androidx.viewbinding.ViewBinding
 
 abstract class BaseDialog<V : ViewBinding>() : DialogFragment() {
 
-    private var _viewBinding: V? = null
-    protected val viewBinding get() = _viewBinding!!
+    protected lateinit var viewBinding: V
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?,
     ): View {
-        _viewBinding = inflateViewBinding(inflater)
+        viewBinding = inflateViewBinding(inflater)
         return viewBinding.root
     }
 
@@ -38,13 +37,7 @@ abstract class BaseDialog<V : ViewBinding>() : DialogFragment() {
 
     abstract fun setUpView()
 
-
     abstract fun inflateViewBinding(inflater: LayoutInflater): V
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _viewBinding = null
-    }
 
     protected open fun showToast(message: String?) {
         Toast.makeText(context, message, Toast.LENGTH_SHORT).show()

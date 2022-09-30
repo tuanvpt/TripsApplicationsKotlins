@@ -14,7 +14,9 @@
         android:layout_height="@dimen/_50sdp"
         android:hint="@string/search_some_thing"
         android:maxLines="1"
-        android:singleLine="true" />
+        android:singleLine="true"
+        android:autofillHints=""
+        android:inputType="text" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvListSearchTrips"

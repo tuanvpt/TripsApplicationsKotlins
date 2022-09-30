@@ -16,11 +16,15 @@
     <string name="item_name">item name</string>
     <string name="item_destination">item destination</string>
     <string name="mm_dd_yyyyy">MM/dd/yyyyy</string>
-    <string name="search_some_thing">Search some thing ...</string>
+    <string name="search_some_thing">Search some thing …</string>
     <string name="button_edit">Edit</string>
     <string name="label_required_fill_info">This field is required</string>
     <string name="label_format_month_day_year">MM/dd/yy</string>
     <string name="button_save_edit">Save edit</string>
     <string name="banner_ad_unit_id">ca-app-pub-8126408194571445/5839822608</string>
+    <string name="title_bottom_bar_home">Home</string>
+    <string name="title_bottom_bar_all">All</string>
+    <string name="title_bottom_bar_search">Search</string>
+    <string name="title_bottom_bar_update">Update</string>
 
 </resources>
