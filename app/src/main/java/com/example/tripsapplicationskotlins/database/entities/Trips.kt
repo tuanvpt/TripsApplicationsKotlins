@@ -12,13 +12,13 @@ data class Trips(
     @ColumnInfo(name = "uid")
     var id: Int = 0,
     @ColumnInfo(name = "name")
-    val name: String?,
+    var name: String?,
     @ColumnInfo(name = "destination")
-    val destination: String?,
+    var destination: String?,
     @ColumnInfo(name = "date_of_trips")
-    val dateOfTrip: String?,
+    var dateOfTrip: String?,
     @ColumnInfo(name = "require_assessment")
-    val requireAssessment: String?,
+    var requireAssessment: String?,
     @ColumnInfo(name = "description")
-    val description: String?
+    var description: String?
 )

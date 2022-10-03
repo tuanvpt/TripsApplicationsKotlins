@@ -32,11 +32,11 @@ abstract class BaseActivity<V : ViewBinding, VM : BaseViewModel> :
         registerLiveData()
     }
 
-    fun showLoading() {
+    private fun showLoading() {
         dialogManager.showLoading()
     }
 
-    fun hideLoading() {
+    private fun hideLoading() {
         dialogManager.hideLoading()
     }
 

@@ -18,5 +18,8 @@ class TripRepository @Inject constructor(private val tripsDao: TripsDao) {
 
     fun searchNameTrips(name: String): List<Trips> = tripsDao.getSearchedTrips(name)
 
-    suspend fun updateTrip(trips: Trips) = tripsDao.updateTrips(trips)
+    suspend fun updateTrip(trips: Trips): List<Trips> {
+        tripsDao.updateTrips(trips)
+        return tripsDao.getAll()
+    }
 }

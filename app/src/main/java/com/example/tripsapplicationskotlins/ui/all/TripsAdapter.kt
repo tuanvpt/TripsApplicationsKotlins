@@ -18,10 +18,6 @@ class TripsAdapter(
         return TripsItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
     }
 
-    fun update(trips: Trips) {
-        val index = items.indexOf(trips)
-    }
-
     override fun bind(binding: TripsItemBinding, item: Trips, position: Int) {
         with(binding) {
             txtName.text = item.name

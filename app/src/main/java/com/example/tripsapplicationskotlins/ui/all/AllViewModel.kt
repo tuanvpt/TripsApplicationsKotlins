@@ -29,8 +29,8 @@ class AllViewModel @Inject constructor(private val repository: TripRepository) :
     }
 
     sealed class UpdateTripObs {
-        class OnSuccess(val items: Trips) : GetTripObs()
-        object OnFailure : GetTripObs()
+        class OnSuccess(val items: List<Trips>) : UpdateTripObs()
+        object OnFailure : UpdateTripObs()
     }
 
     fun deleteTrip(trips: Trips) {
@@ -62,9 +62,9 @@ class AllViewModel @Inject constructor(private val repository: TripRepository) :
             kotlin.runCatching {
                 repository.updateTrip(trips)
             }.onSuccess {
-                getTripObs.postValue(UpdateTripObs.OnSuccess(trips))
+                getUpdateObs.postValue(UpdateTripObs.OnSuccess(it))
             }.onFailure {
-                getTripObs.postValue(UpdateTripObs.OnFailure)
+                getUpdateObs.postValue(UpdateTripObs.OnFailure)
             }
         }
     }

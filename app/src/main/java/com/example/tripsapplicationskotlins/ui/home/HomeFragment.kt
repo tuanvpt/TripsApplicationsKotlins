@@ -24,6 +24,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
 
     private var isAllFieldsChecked = false
     private val myCalendar = Calendar.getInstance()
+    private var isCheckRequire = false
+    private var checkString: String = ""
 
     override fun inflateViewBinding(inflater: LayoutInflater) =
         FragmentHomeBinding.inflate(inflater)
@@ -63,9 +65,11 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         with(viewBinding) {
             cbYes.setOnCheckedChangeListener { _, _ ->
                 viewBinding.cbNo.isChecked = false
+                isCheckRequire = true
             }
             cbNo.setOnCheckedChangeListener { _, _ ->
                 viewBinding.cbYes.isChecked = false
+                isCheckRequire = false
             }
         }
     }
@@ -75,12 +79,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             isAllFieldsChecked = isCheckAllFields()
             if (isAllFieldsChecked) {
                 /*Add data to SQLite*/
+                checkString = if (isCheckRequire) {
+                    viewBinding.cbNo.text.toString()
+                } else {
+                    viewBinding.cbYes.text.toString()
+                }
                 val trips = Trips(
                     0,
                     viewBinding.edtName.text.toString(),
                     viewBinding.edtDestination.text.toString(),
                     viewBinding.edtDateOfTrip.text.toString(),
-                    viewBinding.cbYes.text.toString(),
+                    checkString,
                     viewBinding.edtDestination.text.toString()
                 )
                 viewModel.insert(trips)
@@ -94,7 +103,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         viewModel.insertTripObs.observe(this) {
             when (it) {
                 is HomeViewModel.InsertTripObs.OnSuccess -> {
-
+                    LogUtil.e("Saved successful")
                 }
                 is HomeViewModel.InsertTripObs.OnFailure -> {
                     LogUtil.e(it.toString())
@@ -134,12 +143,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
     /** AdMob demo */
     private fun loadAdBanner() {
         MobileAds.initialize(requireContext()) {}
-
         val adRequest = AdRequest.Builder().build()
         viewBinding.adView.loadAd(adRequest)
-
         viewBinding.adView.adListener = object : AdListener() {
-
             override fun onAdLoaded() {
                 showToast("Ad Loaded")
                 LogUtil.e("Ad Loaded")
@@ -148,8 +154,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
             override fun onAdFailedToLoad(adError: LoadAdError) {
                 LogUtil.e(adError.toString())
             }
-
         }
-
     }
 }

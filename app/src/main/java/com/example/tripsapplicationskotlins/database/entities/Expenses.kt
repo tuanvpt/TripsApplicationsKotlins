@@ -24,11 +24,11 @@ data class Expenses(
     @ColumnInfo(name = "uid")
     var id: Int = 0,
     @ColumnInfo(name = "tripId", index = true)
-    val tripId: String?,
+    var tripId: String?,
     @ColumnInfo(name = "type")
-    val type: String?,
+    var type: String?,
     @ColumnInfo(name = "amount")
-    val amount: String?,
+    var amount: String?,
     @ColumnInfo(name = "time_of_expense")
-    val timeOfExpense: String?,
+    var timeOfExpense: String?,
 )

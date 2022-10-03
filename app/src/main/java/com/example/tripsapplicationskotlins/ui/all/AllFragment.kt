@@ -23,8 +23,8 @@ class AllFragment : BaseFragment<FragmentAllBinding, AllViewModel>() {
 
     private val dialog by lazy {
         EditDialog {
-            LogUtil.e("${it}")
-
+            LogUtil.e("$it")
+            viewModel.updateTrip(it)
         }
     }
 
@@ -46,9 +46,7 @@ class AllFragment : BaseFragment<FragmentAllBinding, AllViewModel>() {
 
     private fun onEdit(trips: Trips) {
         showToast("edit")
-        dialog.showText(childFragmentManager)
-
-        viewModel.updateTrip(trips)
+        dialog.showText(childFragmentManager, trips)
     }
 
     private fun onDelete(trips: Trips) {
@@ -75,6 +73,18 @@ class AllFragment : BaseFragment<FragmentAllBinding, AllViewModel>() {
                 }
                 is OnFailureDelete -> {
                     viewBinding.txtEmpty.isVisible
+                }
+            }
+        }
+
+        viewModel.getUpdateObs.observe(this) {
+            when (it) {
+                is AllViewModel.UpdateTripObs.OnSuccess -> {
+                    adapterTrips.setItems(it.items)
+                    dialog.dismiss()
+                }
+                is AllViewModel.UpdateTripObs.OnFailure -> {
+                    dialog.dismiss()
                 }
             }
         }
