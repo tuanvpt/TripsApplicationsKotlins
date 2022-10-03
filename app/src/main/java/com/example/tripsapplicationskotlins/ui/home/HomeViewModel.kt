@@ -15,7 +15,7 @@ class HomeViewModel @Inject constructor(private val repository: TripRepository) 
     val insertTripObs: MutableLiveData<InsertTripObs> = MutableLiveData()
 
     sealed class InsertTripObs {
-        class OnSuccess : InsertTripObs()
+        class OnSuccess(val items: Trips) : InsertTripObs()
         class OnFailure(val error: Throwable) : InsertTripObs()
     }
 
@@ -24,7 +24,7 @@ class HomeViewModel @Inject constructor(private val repository: TripRepository) 
             kotlin.runCatching {
                 repository.insert(trips)
             }.onSuccess {
-                insertTripObs.postValue(InsertTripObs.OnSuccess())
+                insertTripObs.postValue(InsertTripObs.OnSuccess(trips))
             }.onFailure {
                 insertTripObs.postValue(InsertTripObs.OnFailure(it))
             }

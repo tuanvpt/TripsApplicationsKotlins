@@ -1,7 +1,6 @@
 package com.example.tripsapplicationskotlins.database.daos
 
 import androidx.room.*
-import androidx.room.OnConflictStrategy.REPLACE
 import com.example.tripsapplicationskotlins.database.entities.Trips
 
 
@@ -25,14 +24,14 @@ interface TripsDao {
         destination: String,
         dateOfTrips: String,
         requireAssessment: String,
-        description: String
+        description: String,
     ): Trips
 
     @Insert
     suspend fun insertTrips(trips: Trips)
 
-    @Update(onConflict = REPLACE)
-    suspend fun updateTrips(vararg trips: Trips)
+    @Update
+    suspend fun updateTrips(trips: Trips)
 
     @Delete
     suspend fun deleteTrips(trips: Trips)

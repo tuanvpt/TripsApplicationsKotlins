@@ -15,16 +15,22 @@ import javax.inject.Inject
 class AllViewModel @Inject constructor(private val repository: TripRepository) : BaseViewModel() {
 
     val getTripObs: MutableLiveData<GetTripObs> = MutableLiveData()
+    val getUpdateObs: MutableLiveData<UpdateTripObs> = MutableLiveData()
     val getDeleteObs: MutableLiveData<DeleteTripObs> = MutableLiveData()
 
     sealed class DeleteTripObs {
         class OnSuccessDelete(val items: Trips) : DeleteTripObs()
-        class OnFailureDelete : DeleteTripObs()
+        object OnFailureDelete : DeleteTripObs()
     }
 
     sealed class GetTripObs {
         class OnSuccess(val items: List<Trips>) : GetTripObs()
-        class OnFailure() : GetTripObs()
+        object OnFailure : GetTripObs()
+    }
+
+    sealed class UpdateTripObs {
+        class OnSuccess(val items: List<Trips>) : UpdateTripObs()
+        object OnFailure : UpdateTripObs()
     }
 
     fun deleteTrip(trips: Trips) {
@@ -34,7 +40,7 @@ class AllViewModel @Inject constructor(private val repository: TripRepository) :
             }.onSuccess {
                 getDeleteObs.postValue(DeleteTripObs.OnSuccessDelete(trips))
             }.onFailure {
-                getDeleteObs.postValue(DeleteTripObs.OnFailureDelete())
+                getDeleteObs.postValue(DeleteTripObs.OnFailureDelete)
             }
         }
     }
@@ -46,7 +52,19 @@ class AllViewModel @Inject constructor(private val repository: TripRepository) :
             }.onSuccess {
                 getTripObs.postValue(GetTripObs.OnSuccess(it))
             }.onFailure {
-                getTripObs.postValue(GetTripObs.OnFailure())
+                getTripObs.postValue(GetTripObs.OnFailure)
+            }
+        }
+    }
+
+    fun updateTrip(trips: Trips) {
+        viewModelScope.launch(Dispatchers.IO) {
+            kotlin.runCatching {
+                repository.updateTrip(trips)
+            }.onSuccess {
+                getUpdateObs.postValue(UpdateTripObs.OnSuccess(it))
+            }.onFailure {
+                getUpdateObs.postValue(UpdateTripObs.OnFailure)
             }
         }
     }

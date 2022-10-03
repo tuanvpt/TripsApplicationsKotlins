@@ -123,13 +123,11 @@
             android:maxLength="255" />
 
         <Button
-            android:id="@+id/btnDatabase"
+            android:id="@+id/btnSaveEdit"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/black"
             android:text="@string/button_save_edit" />
-
-
     </LinearLayout>
 
 </FrameLayout>

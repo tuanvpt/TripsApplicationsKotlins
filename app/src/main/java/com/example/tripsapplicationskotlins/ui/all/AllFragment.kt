@@ -12,12 +12,21 @@ import com.example.tripsapplicationskotlins.ui.all.AllViewModel.DeleteTripObs
 import com.example.tripsapplicationskotlins.ui.all.AllViewModel.DeleteTripObs.OnFailureDelete
 import com.example.tripsapplicationskotlins.ui.all.AllViewModel.GetTripObs.OnFailure
 import com.example.tripsapplicationskotlins.ui.all.AllViewModel.GetTripObs.OnSuccess
+import com.example.tripsapplicationskotlins.ui.dialog.EditDialog
+import com.example.tripsapplicationskotlins.utils.LogUtil
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class AllFragment : BaseFragment<FragmentAllBinding, AllViewModel>() {
 
     private val adapterTrips = TripsAdapter(::onClick, ::onEdit, ::onDelete)
+
+    private val dialog by lazy {
+        EditDialog {
+            LogUtil.e("$it")
+            viewModel.updateTrip(it)
+        }
+    }
 
     override fun inflateViewBinding(inflater: LayoutInflater) =
         FragmentAllBinding.inflate(inflater)
@@ -37,12 +46,12 @@ class AllFragment : BaseFragment<FragmentAllBinding, AllViewModel>() {
 
     private fun onEdit(trips: Trips) {
         showToast("edit")
+        dialog.showText(childFragmentManager, trips)
     }
 
     private fun onDelete(trips: Trips) {
         viewModel.deleteTrip(trips)
         showToast("Delete")
-
     }
 
     override fun registerLiveData() {
@@ -68,7 +77,17 @@ class AllFragment : BaseFragment<FragmentAllBinding, AllViewModel>() {
             }
         }
 
-
+        viewModel.getUpdateObs.observe(this) {
+            when (it) {
+                is AllViewModel.UpdateTripObs.OnSuccess -> {
+                    adapterTrips.setItems(it.items)
+                    dialog.dismiss()
+                }
+                is AllViewModel.UpdateTripObs.OnFailure -> {
+                    dialog.dismiss()
+                }
+            }
+        }
     }
 
     override fun getViewModelProviderOwner(): ViewModelStoreOwner {

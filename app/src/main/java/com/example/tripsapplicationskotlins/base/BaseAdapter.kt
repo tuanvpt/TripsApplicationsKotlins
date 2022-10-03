@@ -4,6 +4,8 @@ package com.example.tripsapplicationskotlins.base
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewbinding.ViewBinding
+import com.example.tripsapplicationskotlins.database.entities.Trips
+
 
 abstract class BaseAdapter<V : ViewBinding, DATA> :
     RecyclerView.Adapter<BaseAdapter<V, DATA>.BaseVH>() {
