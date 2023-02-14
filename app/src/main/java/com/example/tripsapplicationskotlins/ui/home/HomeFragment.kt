@@ -38,7 +38,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding, HomeViewModel>() {
         handleCheckBox()
         handleDataOfTrips()
         handleSubmitButton()
-        loadAdBanner()
+        // loadAdBanner() add advertisement check
     }
 
     private fun handleDataOfTrips() {
