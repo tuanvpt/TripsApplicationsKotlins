@@ -26,5 +26,7 @@
     <string name="title_bottom_bar_all">All</string>
     <string name="title_bottom_bar_search">Search</string>
     <string name="title_bottom_bar_update">Update</string>
+    <string name="btn_join">Join</string>
+    <string name="btn_leave">Leave</string>
 
 </resources>
